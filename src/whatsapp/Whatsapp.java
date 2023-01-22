@@ -1,5 +1,5 @@
 //whatsapp model
-
+//this is the main content checked once again.
 package whatsapp;
 
 import java.util.Scanner;
