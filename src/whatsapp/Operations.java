@@ -7,7 +7,7 @@ public class Operations {
 	Scanner sc = new Scanner(System.in);
 	HashMap<Integer,Login> userDetails = new HashMap<>();
 	//adding users initially
-	public void addUser(Login l) {
+	public void addUser(Login l) {				// add new user
 		userDetails.put(l.userCount, l);
 	}
 	public void show() {
@@ -16,7 +16,7 @@ public class Operations {
 		}
 	}
 	//checking user details
-	public boolean check(String name1,String password1) {
+	public boolean check(String name1,String password1) {	     // checking user availability
 		for(Integer i : userDetails.keySet()) {
 			if(name1.equals(userDetails.get(i).name) && password1.equals(userDetails.get(i).password)) 
 				return true;

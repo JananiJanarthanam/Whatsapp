@@ -11,7 +11,7 @@ public class Login {
 		this.name=name;
 		this.password=password;
 		this.userCount=count++;
-		this.message_count=message_count;
-		this.userMsg=userMsg;
+		this.message_count=message_count;   //no. of unread messages
+		this.userMsg=userMsg;   // msg received
 	}
 }

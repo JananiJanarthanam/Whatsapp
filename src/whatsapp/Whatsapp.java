@@ -35,11 +35,14 @@ public class Whatsapp {
 		int choice = sc.nextInt();
 		switch(choice) {
 		case 1 : 
+			System.out.println("**************************************");
+			System.out.println("\tWHATSAPP USER LOG IN : ");
+			System.out.println("**************************************\n");
 			OneUser();
 			break;
 		case 2 :
 			System.out.println("Thank you...");
-			return;
+			return;  // exit state
 		default :
 			System.out.println("Enter only given choices...");
 			choices();
@@ -50,42 +53,50 @@ public class Whatsapp {
 
 		boolean loop=true;
 		while(loop) {
-			System.out.println("**************************************");
-			System.out.println("\tWHATSAPP USER LOG IN : ");
-			System.out.println("**************************************\n");
 			System.out.print("ENTER USER NAME : ");
 			String name1 = sc.next();
 			System.out.print("ENTER PASSWORD : ");
 			String password1 = sc.next();
 			System.out.println();
 			if(ops.check(name1,password1)) {
-				System.out.println(name1+" Logged In...");
-				System.out.println("1)CHATTING \n2)CREATE GROUP \n3)STATUS \n4)LOGOUT");
-				int userChoice = sc.nextInt();
-				switch(userChoice) {
-				case 1 : 
-					System.out.println("CHATS WITH FRIENDS...");
-					ops.chats(name1);
-					break;
-				case 2 :
-					System.out.println("CREATE GROUPS...");
-					break;
-				case 3 : 
-					System.out.println("STATUSSSS....");
-					break;
-				case 4 :
-					System.out.println(name1+" Log Outted...");
-					break;
-				default :
-					System.out.println("Enter only given choicesss...");
-					break;
-				}
+				System.out.println(name1+" Logged In Successfully...");
+				int userChoice = UserOptionChoice();
+				OneUserOptions(userChoice,name1);
 			}
 			else {
 				System.out.println("Invalid User Details...");
 			}
 			choices();
 			return;
+		}
+	}
+	public static int UserOptionChoice() {
+		System.out.println("1)CHATTING \n2)CREATE GROUP \n3)STATUS \n4)LOGOUT");
+		int userChoice = sc.nextInt();
+		return userChoice;
+	}
+	public static void OneUserOptions(int userChoice,String name1){
+		switch(userChoice) {
+		case 1 : 
+			System.out.println("CHATS WITH FRIENDS...");
+			ops.chats(name1);
+			UserOptionChoice();
+			break;
+		case 2 :
+			System.out.println("CREATE GROUPS...");
+			UserOptionChoice();
+			break;
+		case 3 : 
+			System.out.println("STATUSSSS....");
+			UserOptionChoice();
+			break;
+		case 4 :
+			System.out.println(name1+" Log Outted...");
+			choices();
+			break;
+		default :
+			System.out.println("Enter only given choicesss...");
+			break;
 		}
 	}
 }
