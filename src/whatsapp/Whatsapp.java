@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Whatsapp {
 	static Scanner sc = new Scanner(System.in);
 	static Operations ops = new Operations();
+	static OneUser ou = new OneUser();        // error
 	
 	public static void main(String[] args) {
 
@@ -38,7 +39,7 @@ public class Whatsapp {
 			System.out.println("**************************************");
 			System.out.println("\tWHATSAPP USER LOG IN : ");
 			System.out.println("**************************************\n");
-			OneUser();
+			OneUser ou = new OneUser();
 			break;
 		case 2 :
 			System.out.println("Thank you...");
@@ -49,49 +50,47 @@ public class Whatsapp {
 			break;
 		}
 	}
-	public static void OneUser() {
-
-		boolean loop=true;
-		while(loop) {
-			System.out.print("ENTER USER NAME : ");
-			String name1 = sc.next();
-			System.out.print("ENTER PASSWORD : ");
-			String password1 = sc.next();
-			System.out.println();
-			if(ops.check(name1,password1)) {
-				System.out.println(name1+" Logged In Successfully...");
-				int userChoice = UserOptionChoice();
-				OneUserOptions(userChoice,name1);
+	static class OneUser{		// error
+		String name1;
+		public OneUser() {
+			boolean loop=true;
+			while(loop) {
+				System.out.print("ENTER USER NAME : ");
+				name1 = sc.next();
+				System.out.print("ENTER PASSWORD : ");
+				String password1 = sc.next();
+				System.out.println();
+				if(ops.check(name1,password1)) {
+					System.out.println(name1+" Logged In Successfully...");
+					OneUserOptions();
+				}
+				else {
+					System.out.println("Invalid User Details...");
+				}
+				choices();
+				return;
 			}
-			else {
-				System.out.println("Invalid User Details...");
-			}
-			choices();
-			return;
 		}
 	}
-	public static int UserOptionChoice() {
+	public static void OneUserOptions(){
 		System.out.println("1)CHATTING \n2)CREATE GROUP \n3)STATUS \n4)LOGOUT");
 		int userChoice = sc.nextInt();
-		return userChoice;
-	}
-	public static void OneUserOptions(int userChoice,String name1){
 		switch(userChoice) {
 		case 1 : 
 			System.out.println("CHATS WITH FRIENDS...");
-			ops.chats(name1);
-			UserOptionChoice();
+			ops.chats(ou.name1);
+			OneUserOptions();
 			break;
 		case 2 :
 			System.out.println("CREATE GROUPS...");
-			UserOptionChoice();
+			OneUserOptions();
 			break;
 		case 3 : 
 			System.out.println("STATUSSSS....");
-			UserOptionChoice();
+			OneUserOptions();
 			break;
 		case 4 :
-			System.out.println(name1+" Log Outted...");
+			System.out.println(ou.name1+" Log Outted...");
 			choices();
 			break;
 		default :
